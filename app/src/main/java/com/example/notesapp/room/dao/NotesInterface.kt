@@ -16,10 +16,11 @@ interface NotesInterface {
     suspend fun insertall(notes: List<NotesModel>)
 
 
-  @Query("DELETE FROM notes")
+    @Query("DELETE FROM notes")
     suspend fun deleteall()
 
-
+    @Delete
+    suspend fun delete(item: List<NotesModel>)
 
 
 }
