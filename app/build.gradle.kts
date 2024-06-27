@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -38,7 +39,9 @@ android {
     }
 }
 
-
+kapt {
+    correctErrorTypes = true
+}
 
 dependencies {
 
@@ -56,8 +59,13 @@ dependencies {
     implementation(libs.lottie)
 
     //sdp
-    implementation ("com.intuit.sdp:sdp-android:1.1.1")
+    implementation("com.intuit.sdp:sdp-android:1.1.1")
 
     //ssp
-    implementation ("com.intuit.ssp:ssp-android:1.1.1")
+    implementation("com.intuit.ssp:ssp-android:1.1.1")
+
+    //room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 }
