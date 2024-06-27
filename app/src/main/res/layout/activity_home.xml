@@ -18,6 +18,7 @@
         android:text="Notes"/>
 
 
+
 <com.airbnb.lottie.LottieAnimationView
     android:layout_width="@dimen/_30sdp"
     android:layout_height="@dimen/_30sdp"
