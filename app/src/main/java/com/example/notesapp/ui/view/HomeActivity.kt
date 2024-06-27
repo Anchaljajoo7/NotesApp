@@ -37,11 +37,6 @@ class HomeActivity : AppCompatActivity(), ItemListner {
         setContentView(binding.root)
         dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
         clickEvent()
-        if (!list.isEmpty()) {
-            binding.rlPlaceholder.visibility = View.VISIBLE
-        } else {
-            getData()
-        }
 
 
     }
@@ -49,18 +44,28 @@ class HomeActivity : AppCompatActivity(), ItemListner {
     private fun getData() {
         lifecycleScope.launch {
             try {
+                list.clear()
                 val note = withContext(Dispatchers.IO) {
                     dbHelper.getAll()
                 }
+
                 list.addAll(note)
+                if (list.isEmpty()) {
+                    binding.rlPlaceholder.visibility = View.VISIBLE
+                } else {
+                    adapterSetup()
+                    binding.rlPlaceholder.visibility = View.GONE
+
+                }
                 Log.d("jkfikrfhgurghjgnjng", "adapterSetup: " + dbHelper.getAll())
-                adapterSetup()
+
 
             } catch (e: Exception) {
 
             }
+            adapter.notifyDataSetChanged()
         }
-        adapter.notifyDataSetChanged()
+
     }
 
     override fun onResume() {
@@ -97,8 +102,12 @@ class HomeActivity : AppCompatActivity(), ItemListner {
                     dbHelper.deleteAll()
                 }
                 list.clear()
+
+                if (list.isEmpty()) {
+                    binding.rlPlaceholder.visibility = View.VISIBLE
+                }
                 Log.d("jkfikrfhgurghjgnjng", "adapterSetup: " + dbHelper.getAll())
-                adapterSetup()
+
 
             } catch (e: Exception) {
 
