@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_title"
             android:layout_marginTop="@dimen/_10sdp"
+            android:ellipsize="end"
             android:fontFamily="@font/latolight"
             android:maxLines="2"
             android:text="content"

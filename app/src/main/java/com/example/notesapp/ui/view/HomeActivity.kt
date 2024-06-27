@@ -27,9 +27,8 @@ class HomeActivity : AppCompatActivity(), ItemListner {
 
     lateinit var binding: ActivityHomeBinding
     lateinit var dbHelper: DatabaseHelperImpl
-
     private var list: MutableList<NotesModel> = mutableListOf()
-    val adapter = NotesAdapter(list, this)
+    val adapter = NotesAdapter(list, this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +36,6 @@ class HomeActivity : AppCompatActivity(), ItemListner {
         setContentView(binding.root)
         dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
         clickEvent()
-
-
     }
 
     private fun getData() {
@@ -85,8 +82,10 @@ class HomeActivity : AppCompatActivity(), ItemListner {
 
     private fun clickEvent() {
         binding.loAdd.setOnClickListener {
+            val intent = Intent(this@HomeActivity, AddNotesActivity::class.java)
+            intent.putExtra("add", "")
+            startActivity(intent)
 
-            startActivity(Intent(this@HomeActivity, AddNotesActivity::class.java))
 
         }
 
@@ -118,6 +117,7 @@ class HomeActivity : AppCompatActivity(), ItemListner {
 
 
     override fun onSelectedItemClicks(position: Int, type: String) {
+
 
     }
 }

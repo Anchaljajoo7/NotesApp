@@ -43,11 +43,11 @@
             android:id="@+id/ettitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:fontFamily="@font/latoregular"
             android:hint="Title"
+            android:imeOptions="actionNext"
+            android:inputType="text"
             android:maxLength="20"
-
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -59,7 +59,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ettitle"
             android:layout_marginTop="@dimen/_20sdp"
-
             android:fontFamily="@font/latolight"
             android:hint="Type Something Here....."
             android:textColor="@color/white"

@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -19,17 +20,32 @@ class AddNotesActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddNotesBinding
     lateinit var dbHelper: DatabaseHelperImpl
 
+
     private var list: MutableList<NotesModel> = mutableListOf()
-//   private var list:ArrayList<NotesModel> = arrayListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAddNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
 
+        dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
+        checking()
         clickEvent()
+    }
+
+    private fun checking() {
+        val add = intent.getStringExtra("add")
+        val text = intent.getStringExtra("title")
+        val content = intent.getStringExtra("content")
+        if (add.equals("add")) {
+            binding.ettitle.text.clear()
+            binding.etContent.text.clear()
+        } else {
+            binding.ettitle.setText(text ?: "")
+            binding.etContent.setText(content ?: "")
+        }
 
 
     }

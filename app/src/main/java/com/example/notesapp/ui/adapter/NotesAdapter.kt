@@ -1,5 +1,8 @@
 package com.example.notesapp.ui.adapter
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +10,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.room.model.NotesModel
+import com.example.notesapp.ui.view.AddNotesActivity
 import com.example.notesapp.utils.ItemListner
 
-class NotesAdapter(private val notes: List<NotesModel>, private val Itemlistner:ItemListner ) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class NotesAdapter(
+    private val notes: List<NotesModel>,
+    private val itemlistner: ItemListner,
+    private val context: Context
+) :
+    RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.rv_notes,parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.rv_notes, parent, false)
         return NoteViewHolder(view)
     }
 
@@ -20,6 +30,15 @@ class NotesAdapter(private val notes: List<NotesModel>, private val Itemlistner:
         val note = notes[position]
         holder.noteTitle.text = note.title
         holder.noteContent.text = note.content
+
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(context, AddNotesActivity::class.java)
+            intent.putExtra("title", note.title)
+            intent.putExtra("content", note.content)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
