@@ -55,9 +55,13 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                 list.addAll(note)
                 if (list.isEmpty()) {
                     binding.rlPlaceholder.visibility = View.VISIBLE
+                    binding.ivDelete.visibility = View.GONE
+
+
                 } else {
                     adapterSetup()
                     binding.rlPlaceholder.visibility = View.GONE
+                    binding.ivDelete.visibility = View.VISIBLE
 
                 }
                 Log.d("jkfikrfhgurghjgnjng", "adapterSetup: " + dbHelper.getAll())
@@ -111,9 +115,11 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                     }
                     if (list.isEmpty()) {
                         binding.rlPlaceholder.visibility = View.VISIBLE
+                        binding.ivDelete.visibility = View.GONE
                     } else {
                         adapterSetup()
                         binding.rlPlaceholder.visibility = View.GONE
+                        binding.ivDelete.visibility = View.VISIBLE
 
                     }
                     adapter.notifyDataSetChanged()
@@ -167,6 +173,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                 list.clear()
 
                 if (list.isEmpty()) {
+                    binding.ivDelete.visibility = View.GONE
                     binding.rlPlaceholder.visibility = View.VISIBLE
                 }
                 Log.d("jkfikrfhgurghjgnjng", "adapterSetup: " + dbHelper.getAll())

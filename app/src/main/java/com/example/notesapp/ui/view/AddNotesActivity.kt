@@ -81,7 +81,7 @@ class AddNotesActivity : AppCompatActivity() {
         } else {
             if (type.equals("add")) {
                 list.add(model)
-                Toast.makeText(this@AddNotesActivity, "Saved", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddNotesActivity, "Saved Successfully", Toast.LENGTH_SHORT).show()
                 lifecycleScope.launch {
                     try {
                         dbHelper.insertAll(list)
