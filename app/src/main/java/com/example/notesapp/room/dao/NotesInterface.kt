@@ -19,8 +19,8 @@ interface NotesInterface {
     @Query("DELETE FROM notes")
     suspend fun deleteall()
 
-    @Delete
-    suspend fun delete(item: List<NotesModel>)
+    @Query("DELETE FROM notes WHERE id=:item")
+    suspend fun delete(item: Int)
 
 
 }

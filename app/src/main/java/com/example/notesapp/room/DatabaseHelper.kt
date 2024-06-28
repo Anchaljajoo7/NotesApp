@@ -12,5 +12,5 @@ interface DatabaseHelper {
 
 
     suspend fun deleteAll()
-//    suspend fun delete():List<NotesModel>
+    suspend fun delete(id:Int)
 }

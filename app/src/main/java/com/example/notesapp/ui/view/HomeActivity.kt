@@ -94,6 +94,7 @@ class HomeActivity : AppCompatActivity(), ItemListner {
         }
     }
 
+
     private fun deleteData() {
         lifecycleScope.launch {
             try {

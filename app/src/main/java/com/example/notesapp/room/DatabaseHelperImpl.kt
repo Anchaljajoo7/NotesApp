@@ -12,6 +12,7 @@ class DatabaseHelperImpl(private val appDatabase: NotesDatabase) : DatabaseHelpe
     override suspend fun getAll(): List<NotesModel> = appDatabase.userDao().getAllNotes()
     override suspend fun deleteAll() = appDatabase.userDao().deleteall()
 
+    override suspend fun delete(id: Int) = appDatabase.userDao().delete(id)
 
 //    override suspend fun delete(users1: List<NotesModel>) = appDatabase.userDao().delete(users1)
 

@@ -39,6 +39,9 @@ class NotesAdapter(
             intent.putExtra("content", note.content)
             context.startActivity(intent)
         }
+
+
+
     }
 
     override fun getItemCount(): Int {
