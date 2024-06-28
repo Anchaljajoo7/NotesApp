@@ -23,6 +23,7 @@ import com.example.notesapp.room.DatabaseHelperImpl
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.ui.adapter.NotesAdapter
 import com.example.notesapp.utils.ItemListner
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -97,7 +98,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
     private fun deleteSingle() {
         val itemTouchHelperCallback = object :
-            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -115,8 +116,31 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                         list.removeAt(id)
 
 //                        adapter.deleteItem(id)
+                        withContext(Dispatchers.IO) {
+                            adapter.notifyItemRemoved(id)
+
+                            Snackbar.make(binding.rv, list[id].title, Snackbar.LENGTH_LONG)
+                                .setAction("Undo") { view ->
+                                    // Adding on click listener to our action of Snackbar.
+                                    // Below line is to add our item to array list with a position.
+                                    list.add(id, list[id])
+
+                                    // Below line is to notify item is
+                                    // added to our adapter class.
+                                    adapter.notifyItemInserted(id)
+                                }
+                                .show()
+                        }
+
 
                     }
+
+//
+//                    Toast.makeText(
+//                        this@HomeActivity,
+//                        "Note Removed Succesfully",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                     if (list.isEmpty()) {
                         binding.rlPlaceholder.visibility = View.VISIBLE
                         binding.ivDelete.visibility = View.GONE
