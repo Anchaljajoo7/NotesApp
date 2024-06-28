@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.room.model.NotesModel
@@ -14,7 +15,7 @@ import com.example.notesapp.ui.view.AddNotesActivity
 import com.example.notesapp.utils.ItemListner
 
 class NotesAdapter(
-    private val notes: List<NotesModel>,
+    private val notes: MutableList<NotesModel>,
     private val itemlistner: ItemListner,
     private val context: Context
 ) :
@@ -31,21 +32,26 @@ class NotesAdapter(
         holder.noteTitle.text = note.title
         holder.noteContent.text = note.content
 
-
         holder.itemView.setOnClickListener {
 
             val intent = Intent(context, AddNotesActivity::class.java)
             intent.putExtra("title", note.title)
             intent.putExtra("content", note.content)
             context.startActivity(intent)
-        }
 
+        }
 
 
     }
 
     override fun getItemCount(): Int {
         return notes.size
+    }
+
+    fun deleteItem(position: Int) {
+        notes.removeAt(position)
+        notifyItemRemoved(position)
+
     }
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

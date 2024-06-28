@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
@@ -68,17 +69,65 @@ class HomeActivity : AppCompatActivity(), ItemListner {
     override fun onResume() {
         super.onResume()
         getData()
-
+        deleteSingle()
 
     }
 
     private fun adapterSetup() {
-        binding.rv.layoutManager =
-            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        binding.rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
 
         binding.rv.adapter = adapter
+
+
     }
+
+    private fun deleteSingle() {
+        val itemTouchHelperCallback = object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val id = viewHolder.position
+
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        dbHelper.delete(list[id].id)
+                        list.removeAt(id)
+
+//                        adapter.deleteItem(id)
+
+                    }
+                    if (list.isEmpty()) {
+                        binding.rlPlaceholder.visibility = View.VISIBLE
+                    } else {
+                        adapterSetup()
+                        binding.rlPlaceholder.visibility = View.GONE
+
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+
+
+//                adapter.deleteItem(position)
+
+            }
+
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+
+        itemTouchHelper.attachToRecyclerView(binding.rv)
+
+
+    }
+
 
     private fun clickEvent() {
         binding.loAdd.setOnClickListener {
