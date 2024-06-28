@@ -51,8 +51,12 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                 val note = withContext(Dispatchers.IO) {
                     dbHelper.getAll()
                 }
-
                 list.addAll(note)
+                list.reverse()
+//                list.addAll(0, note)
+//                adapter.notifyItemRangeInserted(0, note.size)
+//                adapter.notifyItemInserted(0)
+//                binding.rv.scrollToPosition(0)
                 if (list.isEmpty()) {
                     binding.rlPlaceholder.visibility = View.VISIBLE
                     binding.ivDelete.visibility = View.GONE
