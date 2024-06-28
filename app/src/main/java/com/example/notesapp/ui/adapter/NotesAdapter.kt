@@ -35,8 +35,11 @@ class NotesAdapter(
         holder.itemView.setOnClickListener {
 
             val intent = Intent(context, AddNotesActivity::class.java)
+
             intent.putExtra("title", note.title)
             intent.putExtra("content", note.content)
+            intent.putExtra("id",note.id)
+            intent.putExtra("type","update")
             context.startActivity(intent)
 
         }

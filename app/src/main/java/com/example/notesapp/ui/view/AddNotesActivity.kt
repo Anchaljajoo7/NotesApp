@@ -19,8 +19,12 @@ class AddNotesActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddNotesBinding
     lateinit var dbHelper: DatabaseHelperImpl
+    private var type: String? = null
+    private var text: String? = null
+    private var content: String? = null
 
 
+    var id: Int = 0
     private var list: MutableList<NotesModel> = mutableListOf()
 
 
@@ -36,15 +40,15 @@ class AddNotesActivity : AppCompatActivity() {
     }
 
     private fun checking() {
-        val add = intent.getStringExtra("add")
-        val text = intent.getStringExtra("title")
-        val content = intent.getStringExtra("content")
-        if (add.equals("add")) {
+        type = intent.getStringExtra("type")
+        text = intent.getStringExtra("title")
+        content = intent.getStringExtra("content")
+        if (type.equals("add")) {
             binding.ettitle.text.clear()
             binding.etContent.text.clear()
         } else {
-            binding.ettitle.setText(text ?: "")
-            binding.etContent.setText(content ?: "")
+            binding.ettitle.setText(text)
+            binding.etContent.setText(content)
         }
 
 
@@ -59,40 +63,62 @@ class AddNotesActivity : AppCompatActivity() {
 
         binding.ivSave.setOnClickListener {
             checkText()
-
-
         }
     }
 
 
     private fun checkText() {
-
+        id = intent.getIntExtra("id", 0)
         val title: String = binding.ettitle.getText().toString().trim()
         val content: String = binding.etContent.getText().toString().trim()
 
+
         val model = NotesModel(title = title, content = content)
 
-
         if (title.isEmpty() || content.isEmpty()) {
-            Toast.makeText(this@AddNotesActivity, "Text cannot be empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AddNotesActivity, "Text cannot be empty", Toast.LENGTH_SHORT)
+                .show()
         } else {
-            list.add(model)
-            Toast.makeText(this@AddNotesActivity, "Saved", Toast.LENGTH_SHORT).show()
-            lifecycleScope.launch {
-                try {
-                    dbHelper.insertAll(list)
+            if (type.equals("add")) {
+                list.add(model)
+                Toast.makeText(this@AddNotesActivity, "Saved", Toast.LENGTH_SHORT).show()
+                lifecycleScope.launch {
+                    try {
+                        dbHelper.insertAll(list)
 
-                    Log.d("hdfujhbdhfbgfdhbf", "insert: " + list)
-                    binding.ettitle.text.clear()
-                    binding.etContent.text.clear()
-                    finish()
+                        Log.d("hdfujhbdhfbgfdhbf", "insert: " + list)
+                        binding.ettitle.text.clear()
+                        binding.etContent.text.clear()
+                        finish()
 
-                } catch (e: Exception) {
+                    } catch (e: Exception) {
 
+                    }
                 }
-            }
 
+            } else {
+
+                lifecycleScope.launch {
+                    try {
+                        dbHelper.update(id, title = title, content = content)
+
+
+                        Toast.makeText(
+                            this@AddNotesActivity, "Updated successfully", Toast.LENGTH_SHORT
+                        ).show()
+                        finish()
+                    } catch (e: Exception) {
+
+
+
+
+                    }
+                }
+
+
+            }
         }
+
 
     }
 }

@@ -137,7 +137,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
     private fun clickEvent() {
         binding.loAdd.setOnClickListener {
             val intent = Intent(this@HomeActivity, AddNotesActivity::class.java)
-            intent.putExtra("add", "")
+            intent.putExtra("type", "add")
             startActivity(intent)
 
 
