@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.databinding.ActivityHomeBinding
+import com.example.notesapp.dialog.PopUpDialog
+import com.example.notesapp.dialog.onClickHandle
 import com.example.notesapp.room.DatabaseBuilder
 import com.example.notesapp.room.DatabaseHelperImpl
 import com.example.notesapp.room.model.NotesModel
@@ -24,10 +27,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeActivity : AppCompatActivity(), ItemListner {
+class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
     lateinit var binding: ActivityHomeBinding
     lateinit var dbHelper: DatabaseHelperImpl
+
+    var dialog = PopUpDialog()
     private var list: MutableList<NotesModel> = mutableListOf()
     val adapter = NotesAdapter(list, this, this)
 
@@ -139,8 +144,17 @@ class HomeActivity : AppCompatActivity(), ItemListner {
         }
 
         binding.ivDelete.setOnClickListener {
-            deleteData()
+            if (!list.isEmpty()) {
+                dialog.showDialog(this, this)
+
+            } else {
+                Toast.makeText(this, "No notes available", Toast.LENGTH_SHORT).show()
+            }
+
+//            deleteData()
         }
+
+
     }
 
 
@@ -167,7 +181,14 @@ class HomeActivity : AppCompatActivity(), ItemListner {
 
 
     override fun onSelectedItemClicks(position: Int, type: String) {
+    }
 
+    override fun discardPopup() {
+        dialog.dismiss()
+    }
 
+    override fun deleteNotes() {
+        deleteData()
+        dialog.dismiss()
     }
 }
