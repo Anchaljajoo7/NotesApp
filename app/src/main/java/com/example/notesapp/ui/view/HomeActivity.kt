@@ -89,11 +89,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
     private fun adapterSetup() {
         binding.rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-
-
         binding.rv.adapter = adapter
-
-
     }
 
     private fun deleteSingle() {
@@ -123,32 +119,32 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                                     lifecycleScope.launch {
                                         withContext(Dispatchers.IO) {
                                             list.add(position, removedItem)
+                                            dbHelper.insertAll(list)
 
                                         }
 
                                         withContext(Dispatchers.Main) {
-                                            adapter.addItem(position)
+                                            list.clear()
+//                                            adapter.addItem(position)
+//                                            getData()
+                                            getData()
 
-                                            if (list.isNotEmpty()) {
-                                                binding.rlPlaceholder.visibility = View.GONE
-                                                binding.ivDelete.visibility = View.VISIBLE
-                                            } else {
-                                                binding.rlPlaceholder.visibility = View.VISIBLE
-                                                binding.ivDelete.visibility = View.GONE
-                                            }
 
                                         }
 
                                     }
 
                                 }.show()
+                            if (list.isEmpty()) {
+                                binding.rlPlaceholder.visibility = View.VISIBLE
+                                binding.ivDelete.visibility = View.GONE
+                            } else {
+                                adapterSetup()
+                                binding.rlPlaceholder.visibility = View.GONE
+                                binding.ivDelete.visibility = View.VISIBLE
 
-//                            else {
-//                                adapterSetup()
-//                                binding.rlPlaceholder.visibility = View.GONE
-//                                binding.ivDelete.visibility = View.VISIBLE
-//
-//                            }
+                            }
+
 
                         }
 
@@ -161,11 +157,11 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
         }
 
-        adapter.notifyDataSetChanged()
+
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
 
         itemTouchHelper.attachToRecyclerView(binding.rv)
-
+        adapter.notifyDataSetChanged()
 
     }
 
