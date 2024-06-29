@@ -15,7 +15,7 @@
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_15sdp"
         android:fontFamily="@font/latoregular"
-        android:text="Notes"
+        android:text="@string/notes"
         android:textColor="@color/white"
         android:textSize="@dimen/_17ssp" />
 
@@ -31,7 +31,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/rv_notes" />
 
         <RelativeLayout
             android:id="@+id/rl_placeholder"
@@ -63,12 +66,12 @@
 
     <RelativeLayout
         android:id="@+id/rl_bottom"
-        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginRight="@dimen/_15sdp">
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_10sdp">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lo_add"
@@ -83,10 +86,10 @@
             app:lottie_rawRes="@raw/add_notes" />
 
         <ImageView
-           android:layout_centerVertical="true"
             android:id="@+id/iv_delete"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
             android:src="@drawable/img_delete"
             app:tint="@color/white" />
 

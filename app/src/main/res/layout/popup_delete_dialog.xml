@@ -1,66 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/transparent"
+    app:cardCornerRadius="@dimen/_12sdp">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:fontFamily="@font/latobold"
-        android:text="Are You Sure Want\nTo Delete All Notes"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp" />
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-
-
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/ll_cancel"
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
+            android:fontFamily="@font/latobold"
+            android:text="Are You Sure Want\nTo Delete All Notes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp" />
 
-            android:background="@color/black"
-            android:padding="@dimen/_10sdp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:textColor="@color/white" />
-        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_yes"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_below="@id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/_15sdp"
 
-            android:background="@color/black"
-            android:padding="@dimen/_10sdp">
 
-            <TextView
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_marginBottom="@dimen/_15sdp"
 
-</RelativeLayout>
+                android:background="@color/black"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_yes"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+
+                android:background="@color/black"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

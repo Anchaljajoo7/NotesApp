@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -46,9 +47,11 @@ class AddNotesActivity : AppCompatActivity() {
         if (type.equals("add")) {
             binding.ettitle.text.clear()
             binding.etContent.text.clear()
+            binding.ivShare.visibility = View.GONE
         } else {
             binding.ettitle.setText(text)
             binding.etContent.setText(content)
+            binding.ivShare.visibility = View.VISIBLE
         }
 
 
@@ -64,6 +67,20 @@ class AddNotesActivity : AppCompatActivity() {
         binding.ivSave.setOnClickListener {
             checkText()
         }
+
+        binding.ivShare.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Title: ${binding.ettitle.text}\n\nContent: ${binding.etContent.text}")
+
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, "Note")
+            startActivity(shareIntent)
+        }
+
+
     }
 
 

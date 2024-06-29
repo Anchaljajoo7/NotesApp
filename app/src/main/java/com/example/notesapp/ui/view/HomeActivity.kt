@@ -39,7 +39,9 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityHomeBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
         clickEvent()
@@ -94,7 +96,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
     private fun deleteSingle() {
         val itemTouchHelperCallback = object :
-            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,

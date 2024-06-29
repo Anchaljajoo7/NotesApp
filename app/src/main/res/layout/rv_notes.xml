@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/latoregular"
-            android:text="title"
+
             android:textColor="@color/black"
             android:textSize="@dimen/_15ssp" />
 
@@ -32,8 +32,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:ellipsize="end"
             android:fontFamily="@font/latolight"
-            android:maxLines="2"
-            android:text="content"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />
 
