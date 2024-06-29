@@ -23,5 +23,4 @@ class DatabaseHelperImpl(private val appDatabase: NotesDatabase) : DatabaseHelpe
         appDatabase.userDao().updateItemById(id, title, content)
 
 
-
 }

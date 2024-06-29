@@ -108,58 +108,60 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val id = viewHolder.position
-
+                val position = viewHolder.position
+                val removedItem = list[position]
                 lifecycleScope.launch {
                     withContext(Dispatchers.IO) {
-                        dbHelper.delete(list[id].id)
-                        list.removeAt(id)
+                        dbHelper.delete(removedItem.id)
+                        list.removeAt(position)
 
-//                        adapter.deleteItem(id)
-                        withContext(Dispatchers.IO) {
-                            adapter.notifyItemRemoved(id)
+                        withContext(Dispatchers.Main) {
+                            adapter.deleteItem(position)
 
-                            Snackbar.make(binding.rv, list[id].title, Snackbar.LENGTH_LONG)
+                            Snackbar.make(binding.rv, removedItem.title, Snackbar.LENGTH_LONG)
                                 .setAction("Undo") { view ->
-                                    // Adding on click listener to our action of Snackbar.
-                                    // Below line is to add our item to array list with a position.
-                                    list.add(id, list[id])
+                                    lifecycleScope.launch {
+                                        withContext(Dispatchers.IO) {
+                                            list.add(position, removedItem)
 
-                                    // Below line is to notify item is
-                                    // added to our adapter class.
-                                    adapter.notifyItemInserted(id)
-                                }
-                                .show()
+                                        }
+
+                                        withContext(Dispatchers.Main) {
+                                            adapter.addItem(position)
+
+                                            if (list.isNotEmpty()) {
+                                                binding.rlPlaceholder.visibility = View.GONE
+                                                binding.ivDelete.visibility = View.VISIBLE
+                                            } else {
+                                                binding.rlPlaceholder.visibility = View.VISIBLE
+                                                binding.ivDelete.visibility = View.GONE
+                                            }
+
+                                        }
+
+                                    }
+
+                                }.show()
+
+//                            else {
+//                                adapterSetup()
+//                                binding.rlPlaceholder.visibility = View.GONE
+//                                binding.ivDelete.visibility = View.VISIBLE
+//
+//                            }
+
                         }
 
 
                     }
 
-//
-//                    Toast.makeText(
-//                        this@HomeActivity,
-//                        "Note Removed Succesfully",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-                    if (list.isEmpty()) {
-                        binding.rlPlaceholder.visibility = View.VISIBLE
-                        binding.ivDelete.visibility = View.GONE
-                    } else {
-                        adapterSetup()
-                        binding.rlPlaceholder.visibility = View.GONE
-                        binding.ivDelete.visibility = View.VISIBLE
-
-                    }
-                    adapter.notifyDataSetChanged()
                 }
-
-
-//                adapter.deleteItem(position)
 
             }
 
         }
 
+        adapter.notifyDataSetChanged()
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
 
         itemTouchHelper.attachToRecyclerView(binding.rv)

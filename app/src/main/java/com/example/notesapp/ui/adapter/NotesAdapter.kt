@@ -52,9 +52,13 @@ class NotesAdapter(
     }
 
     fun deleteItem(position: Int) {
-        notes.removeAt(position)
+//        notes.removeAt(position)
         notifyItemRemoved(position)
 
+    }
+
+    fun addItem(position: Int){
+        notifyItemInserted(position)
     }
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
