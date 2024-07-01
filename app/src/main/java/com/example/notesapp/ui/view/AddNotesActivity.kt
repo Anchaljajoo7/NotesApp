@@ -2,21 +2,22 @@ package com.example.notesapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.notesapp.databinding.ActivityAddNotesBinding
 import com.example.notesapp.room.DatabaseBuilder
 import com.example.notesapp.room.DatabaseHelperImpl
 import com.example.notesapp.room.model.NotesModel
+import com.example.notesapp.ui.viewmodel.AddNotesViewModel
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 class AddNotesActivity : AppCompatActivity() {
+
+    lateinit var viewModel: AddNotesViewModel
 
     lateinit var binding: ActivityAddNotesBinding
     lateinit var dbHelper: DatabaseHelperImpl
@@ -26,7 +27,6 @@ class AddNotesActivity : AppCompatActivity() {
 
 
     var id: Int = 0
-    private var list: MutableList<NotesModel> = mutableListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,11 @@ class AddNotesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
+
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(AddNotesViewModel::class.java)
         checking()
         clickEvent()
     }
@@ -71,7 +76,7 @@ class AddNotesActivity : AppCompatActivity() {
         binding.ivShare.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Title: ${binding.ettitle.text}\n\nContent: ${binding.etContent.text}")
+                putExtra(Intent.EXTRA_TEXT, "${binding.ettitle.text}\n\n${binding.etContent.text}")
 
                 type = "text/plain"
             }
@@ -97,22 +102,25 @@ class AddNotesActivity : AppCompatActivity() {
                 .show()
         } else {
             if (type.equals("add")) {
-                list.add(model)
-                Toast.makeText(this@AddNotesActivity, "Saved Successfully", Toast.LENGTH_SHORT)
-                    .show()
-                lifecycleScope.launch {
-                    try {
-                        dbHelper.insertAll(list)
 
-                        Log.d("hdfujhbdhfbgfdhbf", "insert: " + list)
-                        binding.ettitle.text.clear()
-                        binding.etContent.text.clear()
-                        finish()
-
-                    } catch (e: Exception) {
-
-                    }
-                }
+                viewModel.insert(model)
+                finish()
+//                list.add(model)
+//                Toast.makeText(this@AddNotesActivity, "Saved Successfully", Toast.LENGTH_SHORT)
+//                    .show()
+//                lifecycleScope.launch {
+//                    try {
+//                        dbHelper.insertAll(list)
+//
+//                        Log.d("hdfujhbdhfbgfdhbf", "insert: " + list)
+//                        binding.ettitle.text.clear()
+//                        binding.etContent.text.clear()
+//                        finish()
+//
+//                    } catch (e: Exception) {
+//
+//                    }
+//                }
 
             } else {
 

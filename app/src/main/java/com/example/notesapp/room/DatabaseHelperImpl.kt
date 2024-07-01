@@ -7,7 +7,7 @@ class DatabaseHelperImpl(private val appDatabase: NotesDatabase) : DatabaseHelpe
 
 
     //for insert
-    override suspend fun insertAll(users: List<NotesModel>) = appDatabase.userDao().insertall(users)
+    override suspend fun insertAll(users: NotesModel) = appDatabase.userDao().insertall(users)
 
     // for get all
     override suspend fun getAll(): List<NotesModel> = appDatabase.userDao().getAllNotes()

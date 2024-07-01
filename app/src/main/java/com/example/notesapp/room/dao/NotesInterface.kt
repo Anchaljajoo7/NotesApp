@@ -11,11 +11,15 @@ import com.example.notesapp.room.model.NotesModel
 @Dao
 interface NotesInterface {
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertall(notes: NotesModel)
+
+
+
     @Query("SELECT * FROM notes")
     suspend fun getAllNotes(): List<NotesModel>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertall(notes: List<NotesModel>)
+
 
 
     @Query("DELETE FROM notes")
