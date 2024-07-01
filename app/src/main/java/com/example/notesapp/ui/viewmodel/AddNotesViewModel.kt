@@ -59,5 +59,11 @@ class AddNotesViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun deleteAll() {
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
+    }
+
 
 }

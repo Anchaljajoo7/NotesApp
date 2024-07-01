@@ -7,7 +7,7 @@ import com.example.notesapp.room.model.NotesModel
 
 class AddNotesRepository(private val dbHelper: DatabaseHelperImpl) {
     suspend fun getAllNotes(): List<NotesModel> {
-        Log.d("jdfjfffffjfjfhfhfg", "getAllNotes: " +dbHelper)
+        Log.d("jdfjfffffjfjfhfhfg", "getAllNotes: " + dbHelper)
 
         return dbHelper.getAll()
     }
@@ -21,5 +21,9 @@ class AddNotesRepository(private val dbHelper: DatabaseHelperImpl) {
         dbHelper.update(id, title, content)
 
 
+    }
+
+    suspend fun deleteAll() {
+        dbHelper.deleteAll()
     }
 }

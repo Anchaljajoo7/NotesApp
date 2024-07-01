@@ -54,7 +54,7 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
         lifecycleScope.launch {
             viewModel.all.observe(this@HomeActivity, Observer {
                 Log.d("NotesViewModel", "getData: " + it)
-
+                list.clear()
                 list.addAll(it)
                 list.reverse()
 
@@ -194,8 +194,8 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
     private fun deleteData() {
         lifecycleScope.launch {
             try {
-                val note = withContext(Dispatchers.IO) {
-                    dbHelper.deleteAll()
+                withContext(Dispatchers.IO) {
+                    viewModel.deleteAll()
                 }
                 list.clear()
 
