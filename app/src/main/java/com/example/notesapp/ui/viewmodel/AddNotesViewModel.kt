@@ -65,5 +65,13 @@ class AddNotesViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun singleDelete(id: Int) {
+
+        viewModelScope.launch {
+            repository.singleDelete(id)
+        }
+
+    }
+
 
 }

@@ -26,4 +26,10 @@ class AddNotesRepository(private val dbHelper: DatabaseHelperImpl) {
     suspend fun deleteAll() {
         dbHelper.deleteAll()
     }
+
+    suspend fun singleDelete(id: Int) {
+
+        dbHelper.delete(id)
+
+    }
 }
