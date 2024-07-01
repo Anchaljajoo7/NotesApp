@@ -141,7 +141,6 @@ class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
                                 adapterSetup()
                                 binding.rlPlaceholder.visibility = View.GONE
                                 binding.ivDelete.visibility = View.VISIBLE
-
                             }
 
 
