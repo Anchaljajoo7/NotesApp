@@ -27,4 +27,12 @@ class AddNotesViewModel(application: Application) : AndroidViewModel(application
         }
 
     }
+
+    fun update(id: Int, title: String, content: String) {
+
+        viewModelScope.launch {
+            repository.update(id, title, content)
+        }
+    }
+
 }

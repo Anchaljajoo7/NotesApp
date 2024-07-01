@@ -102,47 +102,16 @@ class AddNotesActivity : AppCompatActivity() {
                 .show()
         } else {
             if (type.equals("add")) {
-
                 viewModel.insert(model)
                 finish()
-//                list.add(model)
-//                Toast.makeText(this@AddNotesActivity, "Saved Successfully", Toast.LENGTH_SHORT)
-//                    .show()
-//                lifecycleScope.launch {
-//                    try {
-//                        dbHelper.insertAll(list)
-//
-//                        Log.d("hdfujhbdhfbgfdhbf", "insert: " + list)
-//                        binding.ettitle.text.clear()
-//                        binding.etContent.text.clear()
-//                        finish()
-//
-//                    } catch (e: Exception) {
-//
-//                    }
-//                }
-
             } else {
 
-                lifecycleScope.launch {
-                    try {
-                        dbHelper.update(id, title = title, content = content)
-
-
-                        Toast.makeText(
-                            this@AddNotesActivity, "Updated successfully", Toast.LENGTH_SHORT
-                        ).show()
-                        finish()
-                    } catch (e: Exception) {
-
-
-                    }
-                }
-
+                viewModel.update(id, title = title, content = content)
+                finish()
 
             }
         }
-
-
     }
+
+
 }

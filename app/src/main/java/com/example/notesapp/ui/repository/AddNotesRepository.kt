@@ -10,4 +10,9 @@ class AddNotesRepository(private val dbHelper: DatabaseHelperImpl) {
 
         dbHelper.insertAll(list)
     }
+
+    suspend fun update(id: Int, title: String, content: String) {
+        dbHelper.update(id,title,content)
+
+    }
 }
