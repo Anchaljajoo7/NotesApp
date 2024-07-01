@@ -1,0 +1,142 @@
+[
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.notesapp-main-41:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_rv_notes.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/rv_notes.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latoblack.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latoblack.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_popup_delete_dialog.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/popup_delete_dialog.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latolight.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latolight.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.notesapp-main-41:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_activity_splash.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latothin.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latothin.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latoltalic.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latoltalic.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/raw_add_notes.json.flat",
+        "source": "com.example.notesapp-main-41:/raw/add_notes.json"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_activity_home.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/raw_splash_gif.json.flat",
+        "source": "com.example.notesapp-main-41:/raw/splash_gif.json"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latobold.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latobold.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_img_delete.png.flat",
+        "source": "com.example.notesapp-main-41:/drawable/img_delete.png"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/raw_gif_placeholder.json.flat",
+        "source": "com.example.notesapp-main-41:/raw/gif_placeholder.json"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_img_share_icon.png.flat",
+        "source": "com.example.notesapp-main-41:/drawable/img_share_icon.png"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_img_save.png.flat",
+        "source": "com.example.notesapp-main-41:/drawable/img_save.png"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/xml_backup_rules.xml.flat",
+        "source": "com.example.notesapp-main-41:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_activity_add_notes.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/activity_add_notes.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/font_latoregular.ttf.flat",
+        "source": "com.example.notesapp-main-41:/font/latoregular.ttf"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/layout_activity_main.xml.flat",
+        "source": "com.example.notesapp-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.notesapp-main-41:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.notesapp-main-41:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.notesapp-debug-39:/drawable_img_back_button.png.flat",
+        "source": "com.example.notesapp-main-41:/drawable/img_back_button.png"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/activity_add_notes.xml",
+        "source": "com.example.notesapp-main-41:/layout/activity_add_notes.xml"
+    },
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/activity_home.xml",
+        "source": "com.example.notesapp-main-41:/layout/activity_home.xml"
+    },
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/popup_delete_dialog.xml",
+        "source": "com.example.notesapp-main-41:/layout/popup_delete_dialog.xml"
+    },
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.example.notesapp-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/rv_notes.xml",
+        "source": "com.example.notesapp-main-41:/layout/rv_notes.xml"
+    },
+    {
+        "merged": "com.example.notesapp-mergeDebugResources-38:/layout/activity_splash.xml",
+        "source": "com.example.notesapp-main-41:/layout/activity_splash.xml"
+    }
+]
