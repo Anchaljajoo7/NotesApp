@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,7 @@ import com.example.notesapp.room.DatabaseBuilder
 import com.example.notesapp.room.DatabaseHelperImpl
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.ui.adapter.NotesAdapter
+import com.example.notesapp.ui.viewmodel.AddNotesViewModel
 import com.example.notesapp.utils.ItemListner
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -25,54 +28,54 @@ import kotlinx.coroutines.withContext
 
 class HomeActivity : AppCompatActivity(), ItemListner, onClickHandle {
 
+    lateinit var viewModel: AddNotesViewModel
     lateinit var binding: ActivityHomeBinding
     lateinit var dbHelper: DatabaseHelperImpl
-
     var dialog = PopUpDialog()
     private var list: MutableList<NotesModel> = mutableListOf()
     val adapter = NotesAdapter(list, this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-        dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
+
+//        dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(this))
+
+        viewModel = ViewModelProvider(
+            this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(AddNotesViewModel::class.java)
+
+
         clickEvent()
     }
 
     private fun getData() {
         lifecycleScope.launch {
-            try {
-                list.clear()
-                val note = withContext(Dispatchers.IO) {
-                    dbHelper.getAll()
-                }
-                list.addAll(note)
+            viewModel.all.observe(this@HomeActivity, Observer {
+                Log.d("NotesViewModel", "getData: " + it)
+
+                list.addAll(it)
                 list.reverse()
-//                list.addAll(0, note)
-//                adapter.notifyItemRangeInserted(0, note.size)
-//                adapter.notifyItemInserted(0)
-//                binding.rv.scrollToPosition(0)
+
+
                 if (list.isEmpty()) {
+                    binding.rv.visibility = View.GONE
                     binding.rlPlaceholder.visibility = View.VISIBLE
                     binding.ivDelete.visibility = View.GONE
 
 
                 } else {
                     adapterSetup()
+                    binding.rv.visibility = View.VISIBLE
                     binding.rlPlaceholder.visibility = View.GONE
                     binding.ivDelete.visibility = View.VISIBLE
-
                 }
-                Log.d("jkfikrfhgurghjgnjng", "adapterSetup: " + dbHelper.getAll())
 
+                adapter.notifyDataSetChanged()
+            })
+            viewModel.getAllNotes()
 
-            } catch (e: Exception) {
-
-            }
-            adapter.notifyDataSetChanged()
         }
 
     }

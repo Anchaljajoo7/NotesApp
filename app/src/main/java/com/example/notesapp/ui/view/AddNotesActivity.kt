@@ -2,6 +2,7 @@ package com.example.notesapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -102,6 +103,7 @@ class AddNotesActivity : AppCompatActivity() {
                 .show()
         } else {
             if (type.equals("add")) {
+
                 viewModel.insert(model)
                 finish()
             } else {
