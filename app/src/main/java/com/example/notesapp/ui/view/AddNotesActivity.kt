@@ -14,6 +14,7 @@ import com.example.notesapp.room.DatabaseHelperImpl
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.ui.viewmodel.AddNotesViewModel
 import kotlinx.coroutines.launch
+import java.util.Date
 
 
 class AddNotesActivity : AppCompatActivity() {
@@ -96,7 +97,7 @@ class AddNotesActivity : AppCompatActivity() {
         val content: String = binding.etContent.getText().toString().trim()
 
 
-        val model = NotesModel(title = title, content = content)
+        val model = NotesModel(title = title, content = content, insertTime = Date(), updateTime = Date())
 
         if (title.isEmpty() || content.isEmpty()) {
             Toast.makeText(this@AddNotesActivity, "Text cannot be empty", Toast.LENGTH_SHORT)

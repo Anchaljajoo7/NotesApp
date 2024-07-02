@@ -35,6 +35,29 @@
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />
+        <TextView
+            android:layout_below="@id/tv_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insert Time is"
+            android:id="@+id/tv_insert_time"
+            />
+
+        <TextView
+            android:layout_below="@id/tv_insert_time"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Time is"
+            android:id="@+id/tv_update_time"
+            />
+
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
